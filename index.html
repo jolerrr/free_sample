@@ -3,118 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Project - Bagikan Kreativitasmu!</title>
+    <title>Free Project - Bagikan Proyek Kreatifmu!</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">&times;</button>
-        <div class="logo">
-            <img src="logos.jpg" alt="Free Project Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#" onclick="showContent('acapella')"><i class="fas fa-microphone-alt"></i> Acapella</a></li>
-                <li><a href="#" onclick="showContent('project-flm')"><i class="fas fa-compact-disc"></i> Project FLM</a></li>
-                <li>
-                    <a href="#" onclick="toggleSubMenu('sample-pack-submenu')"><i class="fas fa-headphones"></i> Sample Pack <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <ul class="submenu" id="sample-pack-submenu">
-                        <li><a href="#" onclick="showContent('style-enaf')">Style Enaf</a></li>
-                        <li><a href="#" onclick="showContent('style-lambada')">Style Lambada</a></li>
-                        <li><a href="#" onclick="showContent('style-vinky-yete')">Style Kondang</a></li>
-                        <li><a href="#" onclick="showContent('style-maman-fvndy')">Style Maman Fvndy</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div class="social-media">
-            <a href="#" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+            <div class="logo">
+                <img src="logos.jpg" alt="Free Project Logo">
+                <h2>Free Project</h2>
             </div>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" onclick="showSection('home')"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="#" onclick="showSection('acapella')"><i class="fas fa-microphone"></i> Acapella</a></li>
+            <li><a href="#" onclick="showSection('film-project')"><i class="fas fa-music"></i> Project Flm</a></li>
+            <li>
+                <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)"><i class="fas fa-box"></i> Sample Pack <i class="fas fa-caret-down dropdown-icon"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" onclick="showSection('style-enaf')">Style Enaf</a></li>
+                    <li><a href="#" onclick="showSection('style-lambada')">Style Lambada</a></li>
+                    <li><a href="#" onclick="showSection('style-vinky-yete')">Style Vinky Yete</a></li>
+                    <li><a href="#" onclick="showSection('style-maman-fvndy')">Style Maman Fvndy</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="social-links">
+            <a href="https://wa.me/6281234567890" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
     </div>
 
-    <div class="main-content" id="main-content">
-        <button class="open-btn" onclick="toggleSidebar()">&#9776;</button>
-        <header>
-            <h1>Selamat Datang di Free Project!</h1>
-            <p>Tempat berbagi kreativitas tanpa batas. Temukan project-project keren, acapella, sample pack, dan banyak lagi yang bisa kamu gunakan secara gratis!</p>
-        </header>
+    <div id="main-content">
+        <button class="open-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
 
-        <section id="homepage-content" class="content-section active">
-            <h2>Bagikan dan Temukan Project Gratis!</h2>
-            <p>Di sini, kami percaya bahwa berbagi adalah cara terbaik untuk tumbuh. Kami menyediakan berbagai sumber daya gratis untuk membantu Anda dalam project musik, produksi, atau kreasi lainnya.</p>
-            <p>Jelajahi kategori di samping kiri untuk menemukan apa yang Anda cari, atau kontribusikan karya Anda untuk dinikmati komunitas!</p>
-            </section>
+        <section id="home" class="content-section active">
+            <div class="hero-section">
+                <h1>Bagikan Proyek Kreatifmu, Gratis!</h1>
+                <p>Selamat datang di Free Project, tempat di mana ide-ide kreatif bertemu dan proyek-proyek dibagikan secara cuma-cuma. Temukan inspirasi, unduh aset gratis, dan jadilah bagian dari komunitas kreatif kami!</p>
+                <p>Jelajahi berbagai kategori proyek melalui navigasi di samping kiri. Mari berkarya bersama!</p>
+            </div>
+        </section>
 
-        <section id="acapella-content" class="content-section">
-            <h2>Koleksi Acapella</h2>
-            <p>Temukan berbagai acapella berkualitas tinggi untuk remix, mashup, atau project original Anda.</p>
-            <div class="project-item">
-                <h3>Acapella Judul Lagu 1</h3>
-                <p>Deskripsi singkat tentang acapella ini. Vocal: Penyanyi A.</p>
-                <a href="files/acapella-1.zip" download class="download-btn"><i class="fas fa-download"></i> Download Acapella 1</a>
-            </div>
-            <div class="project-item">
-                <h3>Acapella Judul Lagu 2</h3>
-                <p>Deskripsi singkat tentang acapella ini. Vocal: Penyanyi B.</p>
-                <a href="files/acapella-2.zip" download class="download-btn"><i class="fas fa-download"></i> Download Acapella 2</a>
-            </div>
-            </section>
+        <section id="acapella" class="content-section">
+            <h2>Kumpulan Acapella Gratis</h2>
+            <p>Di sini Anda dapat menemukan berbagai acapella berkualitas tinggi untuk kebutuhan musik Anda.</p>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Acapella Vokal Keren</h3>
+                    <p>Acapella vokal dengan sentuhan melodi modern, cocok untuk remix atau lagu baru.</p>
+                    <a href="files/acapella-vokal-keren.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Acapella Vokal Keren</a>
+                </div>
+                <div class="project-item">
+                    <h3>Acapella EDM Beat</h3>
+                    <p>Vokal energik yang cocok untuk musik EDM dan house.</p>
+                    <a href="files/acapella-edm-beat.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Acapella EDM Beat</a>
+                </div>
+                </div>
+        </section>
 
-        <section id="project-flm-content" class="content-section">
-            <h2>Project FLM (FL Studio Mobile)</h2>
-            <p>Unduh project FL Studio Mobile siap pakai untuk belajar atau memulai kreasi Anda.</p>
-            <div class="project-item">
-                <h3>FLM Project style Kondang</h3>
-                <p>Deskripsi singkat tentang project ini. Genre: Kondang.</p>
-                <a href="KONDANG.zip" download class="download-btn"><i class="fas fa-download"></i> Download Project FLM style Kondang</a>
-            </div>
-            <div class="project-item">
-                <h3>FLM Project Melodic Dubstep</h3>
-                <p>Deskripsi singkat tentang project ini. Genre: Dubstep. BPM: 140.</p>
-                <a href="files/project-flm-dubstep.zip" download class="download-btn"><i class="fas fa-download"></i> Download Project FLM Dubstep</a>
-            </div>
-            </section>
+        <section id="film-project" class="content-section">
+            <h2>Proyek Film & Aset Video</h2>
+            <p>Temukan klip video, sound effect, dan aset lainnya untuk proyek film Anda.</p>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Klip Pembuka Sinematik</h3>
+                    <p>Kumpulan klip pembuka film bergaya sinematik.</p>
+                    <a href="files/klip-pembuka-sinematik.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Klip Pembuka</a>
+                </div>
+                </div>
+        </section>
 
-        <section id="style-enaf-content" class="content-section">
+        <section id="style-enaf" class="content-section">
             <h2>Sample Pack: Style Enaf</h2>
-            <p>Kumpulan sample pack dengan nuansa khas dari Style Enaf.</p>
-            <div class="project-item">
-                <h3>Enaf Drum Kit Vol. 1</h3>
-                <p>Berisi berbagai drum one-shot dan loop. Genre: EDM, Pop.</p>
-                <a href="files/enaf-drumkit-v1.zip" download class="download-btn"><i class="fas fa-download"></i> Download Drum Kit</a>
+            <p>Koleksi sample pack dengan nuansa "Style Enaf". Cocok untuk genre musik tertentu.</p>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Drum Kit Enaf Vol. 1</h3>
+                    <p>Set drum kit lengkap dengan suara khas Style Enaf.</p>
+                    <a href="files/drum-kit-enaf-vol1.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Drum Kit</a>
+                </div>
             </div>
-            </section>
+        </section>
 
-        <section id="style-lambada-content" class="content-section">
+        <section id="style-lambada" class="content-section">
             <h2>Sample Pack: Style Lambada</h2>
-            <p>Koleksi sample yang cocok untuk musik dengan beat Lambada.</p>
-            <div class="project-item">
-                <h3>Lambada Percussion Pack</h3>
-                <p>Sample perkusi dan ritme Lambada yang autentik.</p>
-                <a href="#" download class="download-btn"><i class="fas fa-download"></i> Download Sample</a>
+            <p>Sample pack dengan irama dan melodi khas "Style Lambada" yang ceria.</p>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Melodi Lambada Loops</h3>
+                    <p>Kumpulan melodi loop yang siap digunakan untuk menciptakan lagu Lambada.</p>
+                    <a href="files/melodi-lambada-loops.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Melodi Lambada</a>
+                </div>
             </div>
-            </section>
+        </section>
 
-        <section id="style-vinky-yete-content" class="content-section">
-            <h2>Sample Pack: Style Kondang</h2>
-            <p>Temukan sample unik dari Style Kondang.</p>
-            <div class="project-item">
-                <h3>Kondang sample Pack</h3>
-                <p>Kumpulan efek suara dan transisi.</p>
-                <a href="KONDANG SAMPLE PACK.zip" download class="download-btn"><i class="fas fa-download"></i> Download Pack</a>
+        <section id="style-vinky-yete" class="content-section">
+            <h2>Sample Pack: Style Vinky Yete</h2>
+            <p>Eksplorasi suara unik dengan sample pack "Style Vinky Yete".</p>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>SFX Vinky Yete</h3>
+                    <p>Berbagai sound effect menarik dengan sentuhan Vinky Yete.</p>
+                    <a href="files/sfx-vinky-yete.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh SFX</a>
+                </div>
             </div>
-            </section>
+        </section>
 
-        <section id="style-maman-fvndy-content" class="content-section">
+        <section id="style-maman-fvndy" class="content-section">
             <h2>Sample Pack: Style Maman Fvndy</h2>
-            <p>Sample berkualitas tinggi dari Style Maman Fvndy.</p>
-            <div class="project-item">
-                <h3>Maman Fvndy Vocal Chops</h3>
-                <p>Koleksi vocal chops yang kreatif dan modern.</p>
-                <a href="files/maman-fvndy-vocal-chops.zip" download class="download-btn"><i class="fas fa-download"></i> Download Vocal Chops</a>
+            <p>Sample pack yang terinspirasi dari "Style Maman Fvndy" untuk nuansa musik yang berbeda.</p>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Bassline Maman Fvndy</h3>
+                    <p>Koleksi bassline yang groove dan catchy ala Maman Fvndy.</p>
+                    <a href="files/bassline-maman-fvndy.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Bassline</a>
+                </div>
             </div>
-            </section>
+        </section>
+
     </div>
 
     <script>
@@ -123,35 +132,29 @@
             document.getElementById("main-content").classList.toggle("shifted");
         }
 
-        function showContent(id) {
-            // Sembunyikan semua section konten
+        function toggleDropdown(event) {
+            event.preventDefault();
+            const parent = event.target.closest('li');
+            parent.classList.toggle('active');
+        }
+
+        function showSection(sectionId) {
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(section => {
                 section.classList.remove('active');
             });
-
-            // Tampilkan section yang dipilih
-            document.getElementById(id + '-content').classList.add('active');
-
-            // Tutup sidebar setelah memilih jika di mobile
-            if (window.innerWidth <= 768) {
+            document.getElementById(sectionId).classList.add('active');
+            // Opsional: Tutup sidebar setelah mengklik item
+            if (window.innerWidth <= 768) { // Tutup hanya pada layar kecil
                 toggleSidebar();
             }
         }
 
-        function toggleSubMenu(id) {
-            document.getElementById(id).classList.toggle("active");
-            const dropdownIcon = document.querySelector(`#${id} ~ a .dropdown-icon`); // Adjusted selector
-            if (dropdownIcon) {
-                dropdownIcon.classList.toggle("fa-chevron-down");
-                dropdownIcon.classList.toggle("fa-chevron-up");
-            }
-        }
-
-        // Tampilkan halaman utama saat pertama kali dimuat
-        document.addEventListener('DOMContentLoaded', (event) => {
-            showContent('homepage');
+        // Tampilkan home section secara default saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('home');
         });
     </script>
 </body>
-</html>
+                                                                                         </html>
+                                                                                         
