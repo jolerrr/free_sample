@@ -11,14 +11,14 @@ body {
 
 /* Color Palette */
 :root {
-    --primary-color: #263A47; /* Dark Bluish Gray */
-    --secondary-color: #4A5B6A; /* Medium Bluish Gray */
-    --accent-color: #B4C5D8; /* Very Light Bluish Gray (used for highlight) */
-    --text-color-dark: #263A47;
-    --text-color-light: #B4C5D8; /* Text on dark backgrounds */
-    --bg-light: #f6f6f6; /* Very light gray for main content background */
-    --bg-dark: #263A47; /* Dark Bluish Gray for sidebar background */
-    --border-color: rgba(74, 91, 106, 0.2); /* Semi-transparent secondary color */
+    --primary-color: #395886; /* Dark Blue */
+    --secondary-color: #638ECB; /* Medium-Dark Blue */
+    --accent-color: #8AAEE0; /* Medium Blue (for highlights) */
+    --text-color-dark: #395886; /* Dark Blue for text on light backgrounds */
+    --text-color-light: #F0F3FA; /* Very Light Blue for text on dark backgrounds */
+    --bg-light: #F0F3FA; /* Very Light Blue for main content background */
+    --bg-dark: #395886; /* Dark Blue for sidebar background */
+    --border-color: rgba(57, 88, 134, 0.2); /* Semi-transparent primary color */
 }
 
 /* Sidebar */
@@ -109,9 +109,11 @@ body {
     font-size: 1.2em;
 }
 
-.sidebar-menu a:hover {
+.sidebar-menu a:hover,
+.sidebar-menu a.active-link { /* Added active-link style */
     background-color: var(--secondary-color); /* Hover background */
-    color: var(--accent-color); /* Hover text color */
+    color: var(--text-color-light); /* Hover text color */
+    font-weight: 600; /* Make active link bolder */
 }
 
 /* Dropdown Menu */
@@ -133,7 +135,7 @@ body {
     list-style: none;
     padding: 0;
     margin: 5px 0 0 0;
-    background-color: #384C5C; /* Slightly lighter dark for sub-menu, derived from primary */
+    background-color: #4A6E9B; /* Slightly lighter shade for sub-menu */
     border-radius: 5px;
     overflow: hidden; /* Hide overflow when not active */
     max-height: 0;
@@ -159,6 +161,15 @@ body {
     padding: 20px;
     text-align: center;
     border-top: 1px solid var(--border-color);
+}
+
+/* Style for the new "Media Sosial" heading */
+.social-links-heading {
+    color: var(--accent-color); /* Use accent color for the heading */
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 10px; /* Space below the heading */
+    margin-top: 0; /* Remove default paragraph top margin */
 }
 
 .social-links a {
@@ -189,12 +200,13 @@ body {
     flex-grow: 1;
     margin-left: 0; /* No margin initially */
     padding: 20px;
-    transition: margin-left 0.3s ease;
+    transition: transform 0.3s ease; /* Changed to transform for smoother animation */
     position: relative;
+    width: 100%; /* Ensure it takes full width initially */
 }
 
 #main-content.shifted {
-    margin-left: 250px; /* Shift content when sidebar is open */
+    transform: translateX(250px); /* Shift content when sidebar is open using transform */
 }
 
 .open-btn {
@@ -221,7 +233,7 @@ body {
 .content-section {
     display: none; /* Hidden by default */
     padding: 40px;
-    background-color: #fff; /* Keeping white for content background for readability */
+    background-color: var(--bg-light); /* Use bg-light for content background */
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     margin-top: 70px; /* Space for open button */
@@ -257,6 +269,7 @@ body {
     color: var(--text-color-light);
     border-radius: 10px;
     box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    margin-bottom: 30px; /* Added space below hero section */
 }
 
 .hero-section h1 {
@@ -270,6 +283,44 @@ body {
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto 30px;
+}
+
+/* New: Important Note Section */
+.important-note-section {
+    background-color: var(--bg-light); /* Match content section background */
+    border: 2px solid var(--accent-color); /* Accent border for emphasis */
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 40px; /* Space below the note */
+}
+
+.important-note-section h2 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.important-note-section h2::after {
+    content: '';
+    display: block;
+    width: 50px; /* Slightly smaller underline */
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.important-note-section p {
+    font-size: 1.1em;
+    color: var(--text-color-dark);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 600; /* Make text a bit bolder for emphasis */
 }
 
 /* Project List */
@@ -287,6 +338,9 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     border-top: 5px solid var(--accent-color); /* Accent on project item */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; /* Make project item a flex container */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Push download button to bottom */
 }
 
 .project-item:hover {
@@ -306,7 +360,36 @@ body {
     line-height: 1.6;
     color: var(--text-color-dark);
     margin-bottom: 20px;
+    flex-grow: 1; /* Allow paragraph to take up available space */
 }
+
+/* Audio Preview Player Styles */
+.audio-preview {
+    width: 100%; /* Full width within its container */
+    margin-bottom: 20px; /* Space above download button */
+    border-radius: 5px;
+    outline: none; /* Remove default blue outline on focus */
+}
+
+/* Styling native audio player controls (limited customization) */
+.audio-preview::-webkit-media-controls-panel {
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+}
+
+.audio-preview::-webkit-media-controls-play-button,
+.audio-preview::-webkit-media-controls-current-time-display,
+.audio-preview::-webkit-media-controls-time-remaining-display,
+.audio-preview::-webkit-media-controls-timeline,
+.audio-preview::-webkit-media-controls-volume-slider {
+    color: var(--text-color-light); /* Affects some icons/text */
+}
+
+.audio-preview::-webkit-media-controls-timeline {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
 
 .download-btn {
     display: inline-flex;
@@ -318,6 +401,7 @@ body {
     text-decoration: none;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: flex-start; /* Align button to start within flex column */
 }
 
 .download-btn i {
@@ -342,12 +426,15 @@ body {
     }
 
     #main-content {
-        margin-left: 0;
+        /* Removed margin-left manipulation for small screens,
+            as sidebar now overlays */
+        transform: translateX(0); /* Ensure no initial shift on small screens */
         padding: 15px;
     }
 
     #main-content.shifted {
-        margin-left: 0; /* Don't shift content on small screens */
+        /* No shift on small screens as sidebar overlays */
+        transform: translateX(0);
     }
 
     .open-btn {
@@ -362,6 +449,7 @@ body {
 
     .hero-section {
         padding: 60px 20px;
+        margin-bottom: 25px; /* Adjust spacing for smaller screens */
     }
 
     .hero-section h1 {
@@ -370,6 +458,19 @@ body {
 
     .hero-section p {
         font-size: 1.1em;
+    }
+
+    .important-note-section {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .important-note-section h2 {
+        font-size: 1.8em;
+    }
+
+    .important-note-section p {
+        font-size: 1em;
     }
 
     .sidebar-header .close-btn {
@@ -391,6 +492,15 @@ body {
 
     .logo h2 {
         font-size: 1.2em;
+    }
+
+    .audio-preview {
+        margin-bottom: 15px; /* Adjust spacing for smaller screens */
+    }
+
+    /* Adjust dropdown menu behavior on small screens */
+    .sidebar-menu li.active .dropdown-menu {
+        max-height: fit-content; /* Allow content to dictate height */
     }
 }
 
@@ -415,5 +525,12 @@ body {
         padding: 10px 20px;
         font-size: 0.9em;
     }
+
+    .important-note-section h2 {
+        font-size: 1.5em;
     }
-        
+
+    .important-note-section p {
+        font-size: 0.9em;
+    }
+}
