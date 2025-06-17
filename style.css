@@ -163,15 +163,6 @@ body {
     border-top: 1px solid var(--border-color);
 }
 
-/* Style for the new "Media Sosial" heading */
-.social-links-heading {
-    color: var(--accent-color); /* Use accent color for the heading */
-    font-size: 1.2em;
-    font-weight: 600;
-    margin-bottom: 10px; /* Space below the heading */
-    margin-top: 0; /* Remove default paragraph top margin */
-}
-
 .social-links a {
     color: var(--text-color-light);
     text-decoration: none;
@@ -427,7 +418,7 @@ body {
 
     #main-content {
         /* Removed margin-left manipulation for small screens,
-            as sidebar now overlays */
+           as sidebar now overlays */
         transform: translateX(0); /* Ensure no initial shift on small screens */
         padding: 15px;
     }
