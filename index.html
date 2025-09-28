@@ -3,155 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Project - Bagikan Proyek Kreatifmu!</title>
+    <title>Free Project - Bagikan Proyek Kreatifmu! | Komik Style</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="sidebar">
         <div class="sidebar-header">
-            <button class="close-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
-            <div class="logo">
-                <img src="logo1.jpg" alt="Free Project Logo">
-                <h2>Vriz</h2>
+            <button class="close-btn comic-button" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+            <div class="logo comic-panel">
+                <h2 class="logo-text">RizZ_1</h2>
             </div>
         </div>
         <ul class="sidebar-menu">
             <li><a href="#" onclick="showSection('home')"><i class="fas fa-home"></i> Beranda</a></li>
             <li><a href="#" onclick="showSection('acapella')"><i class="fas fa-microphone"></i> Acapella</a></li>
-            <li><a href="#" onclick="showSection('film-project')"><i class="fas fa-music"></i> Project Flm Gratis!</a></li>
+            <li><a href="#" onclick="showSection('film-project')"><i class="fas fa-film"></i> Project Flm Gratis!</a></li>
             <li>
-                <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)"><i class="fas fa-box"></i> Project Sale <i class="fas fa-caret-down dropdown-icon"></i></a>
+                <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)"><i class="fas fa-box"></i> Project For Sale <i class="fas fa-caret-down dropdown-icon"></i></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#" onclick="showSection('style-enaf')">Style Enaf</a></li>
-                    <li><a href="#" onclick="showSection('style-lambada')">Style Lambada</a></li>
-                    <li><a href="#" onclick="showSection('style-vinky-yete')">Style Vinky Yete</a></li>
-                    <li><a href="#" onclick="showSection('style-maman-fvndy')">Style Maman Fvndy</a></li>
+                    <li><a href="#" onclick="showSection('style-enaf')">Project 1: Enaf</a></li>
+                    <li><a href="#" onclick="showSection('style-lambada')">Project 2: Lambada</a></li>
+                    <li><a href="#" onclick="showSection('style-vinky-yete')">Project 3: Vinky Yete</a></li>
+                    <li><a href="#" onclick="showSection('style-maman-fvndy')">Project 4: Maman Fvndy</a></li>
                 </ul>
             </li>
         </ul>
-        <div class="social-links">
-            <a href="https://wa.me/6281234567890" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <div class="social-links comic-panel">
+            <a href="https://wa.me/6283129555763" target="_blank" class="comic-button action-btn"><i class="fab fa-whatsapp"></i> Hubungi Kami!</a>
         </div>
     </div>
 
     <div id="main-content">
-        <button class="open-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        <button id="open-btn" class="open-btn comic-button" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
 
-        <section id="home" class="content-section active">
+        <section id="home" class="content-section comic-panel active">
             <div class="hero-section">
-                <h1>Project Flm Untukmu, Gratis!</h1>
+                <h1>PROJECT FL STUDIO<br>MOBILE!</h1>
                 <p>Selamat datang di Free Project, tempat di mana ide-ide kreatif bertemu dan proyek-proyek dibagikan secara cuma-cuma. Temukan inspirasi, unduh aset gratis, dan jadilah bagian dari komunitas kreatif kami!</p>
                 <p>Jelajahi berbagai kategori proyek melalui navigasi di samping kiri. Mari berkarya bersama!</p>
             </div>
-            <div class="important-note-section">
-                <h2>Perlu Diperhatikan</h2>
-                <p>Tolong gunakan Projects atau acapella Ini sebagai bahan pembelajaran, tidak untuk dilisensi ataupun di per jual belikan, terimakasih!</p>
+            <div class="important-note-section comic-note">
+                <h2>PERHATIAN!</h2>
+                <p>Tolong gunakan Projects atau Acapella Ini sebagai **bahan pembelajaran**, tidak untuk dilisensi ataupun di per jual belikan, terimakasih!</p>
             </div>
         </section>
 
-        <section id="acapella" class="content-section">
-            <h2>Kumpulan Acapella Gratis</h2>
+        <section id="acapella" class="content-section comic-panel">
+            <h2>KUMPULAN ACAPELLA GRATIS!</h2>
             <p>Di sini Anda dapat menemukan berbagai acapella berkualitas tinggi untuk kebutuhan musik Anda.</p>
             <div class="project-list">
-                <div class="project-item">
-                    <h3>Acapella Vokal Keren</h3>
+                <div class="project-item comic-item">
+                    <h3>Acapella Mashup Wenak!</h3>
                     <p>Acapella vokal dengan sentuhan melodi modern, cocok untuk remix atau lagu baru.</p>
                     <audio controls class="audio-preview">
                         <source src="previews/acapella-vokal-keren-preview.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
-                    <a href="files/acapella-vokal-keren.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Acapella Vokal Keren</a>
+                    <a href="files/acapella-vokal-keren.zip" download class="download-btn comic-button"><i class="fas fa-download"></i> UNDUH ACAPELLA!</a>
                 </div>
-                <div class="project-item">
-                    <h3>Acapella EDM Beat</h3>
+                <div class="project-item comic-item">
+                    <h3>Acapella Mashup India!</h3>
                     <p>Vokal energik yang cocok untuk musik EDM dan house.</p>
                     <audio controls class="audio-preview">
                         <source src="previews/acapella-edm-beat-preview.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
-                    <a href="files/acapella-edm-beat.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Acapella EDM Beat</a>
+                    <a href="files/acapella-edm-beat.zip" download class="download-btn comic-button"><i class="fas fa-download"></i> UNDUH ACAPELLA!</a>
                 </div>
                 </div>
         </section>
 
-        <section id="film-project" class="content-section">
-            <h2>Project Flm & Sample Gratis</h2>
-            <p>Kesempatan untuk eksplorasi dan Belajar,Kami menyediakan Project Fl Studio Mobile untukmu,Gratis!</p>
+        <section id="film-project" class="content-section comic-panel">
+            <h2>PROJECT FL STUDIO GRATIS!</h2>
+            <p></p>
             <div class="project-list">
-                <div class="project-item">
-                    <h3>Project Style Kondang Free</h3>
+                <div class="project-item comic-item">
+                    <h3>Project Style Kondang Free!</h3>
                     <p>Free Project Style Kondang Disertai Dengan Sample!</p>
                     <audio controls class="audio-preview">
                         <source src="previews/klip-pembuka-sinematik-preview.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
-                    <a href="KONDANG.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh</a>
+                    <a href="KONDANG.zip" download class="download-btn comic-button"><i class="fas fa-download"></i> UNDUH SEKARANG!</a>
                 </div>
             </div>
         </section>
 
-        <section id="style-enaf" class="content-section">
-            <h2>Sample Pack: Style Enaf</h2>
-            <p>Koleksi sample pack dengan nuansa "Style Enaf". Cocok untuk genre musik tertentu.</p>
+        <section id="style-enaf" class="content-section comic-panel">
+            <h2>PROJECT FOR SALE: STYLE ENAF!</h2>
+            <p></p>
             <div class="project-list">
-                <div class="project-item">
-                    <h3>Drum Kit Enaf Vol. 1</h3>
+                <div class="project-item comic-item">
+                    <h3>Drum Kit Enaf Vol. 1 <span class="price-bubble">Rp 50.000</span></h3>
                     <p>Set drum kit lengkap dengan suara khas Style Enaf.</p>
                     <audio controls class="audio-preview">
                         <source src="previews/drum-kit-enaf-vol1-preview.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
-                    <a href="files/drum-kit-enaf-vol1.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Drum Kit</a>
+                    <a href="https://wa.me/6283129555763?text=Halo%2C%20saya%20tertarik%20dengan%20Drum%20Kit%20Enaf%20Vol.%201%20seharga%20Rp%2050.000." target="_blank" class="purchase-btn comic-button action-btn"><i class="fab fa-whatsapp"></i> BELI VIA WHATSAPP!</a>
                 </div>
             </div>
         </section>
 
-        <section id="style-lambada" class="content-section">
-            <h2>Sample Pack: Style Lambada</h2>
+        <section id="style-lambada" class="content-section comic-panel">
+            <h2>PROJECT FOR SALE: STYLE LAMBADA!</h2>
             <p>Sample pack dengan irama dan melodi khas "Style Lambada" yang ceria.</p>
             <div class="project-list">
-                <div class="project-item">
-                    <h3>Melodi Lambada Loops</h3>
+                <div class="project-item comic-item">
+                    <h3>Melodi Lambada Loops <span class="price-bubble">Rp 75.000</span></h3>
                     <p>Kumpulan melodi loop yang siap digunakan untuk menciptakan lagu Lambada.</p>
                     <audio controls class="audio-preview">
                         <source src="previews/melodi-lambada-loops-preview.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
-                    <a href="files/melodi-lambada-loops.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Melodi Lambada</a>
+                    <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20Melodi%20Lambada%20Loops%20seharga%20Rp%2075.000." target="_blank" class="purchase-btn comic-button action-btn"><i class="fab fa-whatsapp"></i> BELI VIA WHATSAPP!</a>
                 </div>
             </div>
         </section>
 
-        <section id="style-vinky-yete" class="content-section">
-            <h2>Sample Pack: Style Vinky Yete</h2>
+        <section id="style-vinky-yete" class="content-section comic-panel">
+            <h2>PROJECT FOR SALE: STYLE VINKY YETE!</h2>
             <p>Eksplorasi suara unik dengan sample pack "Style Vinky Yete".</p>
             <div class="project-list">
-                <div class="project-item">
-                    <h3>SFX Vinky Yete</h3>
+                <div class="project-item comic-item">
+                    <h3>SFX Vinky Yete <span class="price-bubble">Rp 60.000</span></h3>
                     <p>Berbagai sound effect menarik dengan sentuhan Vinky Yete.</p>
                     <audio controls class="audio-preview">
                         <source src="previews/sfx-vinky-yete-preview.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
-                    <a href="files/sfx-vinky-yete.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh SFX</a>
+                    <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20SFX%20Vinky%20Yete%20seharga%20Rp%2060.000." target="_blank" class="purchase-btn comic-button action-btn"><i class="fab fa-whatsapp"></i> BELI VIA WHATSAPP!</a>
                 </div>
             </div>
         </section>
 
-        <section id="style-maman-fvndy" class="content-section">
-            <h2>Sample Pack: Style Maman Fvndy</h2>
+        <section id="style-maman-fvndy" class="content-section comic-panel">
+            <h2>PROJECT FOR SALE: STYLE MAMAN FVNDY!</h2>
             <p>Sample pack yang terinspirasi dari "Style Maman Fvndy" untuk nuansa musik yang berbeda.</p>
             <div class="project-list">
-                <div class="project-item">
-                    <h3>Bassline Maman Fvndy</h3>
+                <div class="project-item comic-item">
+                    <h3>Bassline Maman Fvndy <span class="price-bubble">Rp 85.000</span></h3>
                     <p>Koleksi bassline yang groove dan catchy ala Maman Fvndy.</p>
                     <audio controls class="audio-preview">
                         <source src="previews/bassline-maman-fvndy-preview.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
-                    <a href="files/bassline-maman-fvndy.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Bassline</a>
+                    <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20Bassline%20Maman%20Fvndy%20seharga%20Rp%2085.000." target="_blank" class="purchase-btn comic-button action-btn"><i class="fab fa-whatsapp"></i> BELI VIA WHATSAPP!</a>
                 </div>
             </div>
         </section>
@@ -160,8 +159,22 @@
 
     <script>
         function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("active");
-            document.getElementById("main-content").classList.toggle("shifted");
+            const sidebar = document.getElementById("sidebar");
+            const mainContent = document.getElementById("main-content");
+            const openBtn = document.getElementById("open-btn"); // Ambil tombol garis tiga
+
+            sidebar.classList.toggle("active");
+            mainContent.classList.toggle("shifted");
+
+            // Logika untuk menyembunyikan/menampilkan tombol garis tiga
+            if (sidebar.classList.contains("active")) {
+                openBtn.style.display = "none"; // Sembunyikan jika sidebar terbuka
+            } else {
+                // Gunakan timeout singkat untuk memastikan transisi visual yang lebih baik
+                setTimeout(() => {
+                    openBtn.style.display = "block"; // Tampilkan jika sidebar tertutup
+                }, 300); // Sesuaikan dengan durasi transisi CSS jika ada
+            }
         }
 
         function toggleDropdown(event) {
@@ -182,19 +195,18 @@
             sidebarLinks.forEach(link => {
                 link.classList.remove('active-link');
             });
-
+            
             // Add active-link class to the clicked item
-            // Check if the clicked element is part of a dropdown or a direct link
             let clickedLink = event.target.closest('a');
             if (clickedLink) {
                  // If it's a dropdown toggle, apply active to its parent li
                 if (clickedLink.classList.contains('dropdown-toggle')) {
-                    clickedLink.closest('li').classList.add('active-link');
+                    const parentLi = clickedLink.closest('li');
+                    parentLi.classList.add('active-link');
                 } else {
                     clickedLink.classList.add('active-link');
                 }
             }
-
 
             // Optional: Tutup sidebar setelah mengklik item
             if (window.innerWidth <= 768) { // Tutup hanya pada layar kecil
@@ -204,11 +216,11 @@
 
         // Tampilkan home section secara default saat halaman dimuat
         document.addEventListener('DOMContentLoaded', () => {
-            showSection('home');
+            document.getElementById('home').classList.add('active');
             // Set active-link for 'Beranda' on initial load
             document.querySelector('.sidebar-menu li:first-child a').classList.add('active-link');
         });
     </script>
 </body>
-                            </html>
-                            
+    </html>
+    
