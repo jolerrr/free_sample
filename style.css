@@ -1,0 +1,542 @@
+/* Color Palette (TIDAK BERUBAH) */
+:root {
+    --primary-color: #395886; /* Dark Blue */
+    --secondary-color: #638ECB; /* Medium-Dark Blue */
+    --accent-color: #8AAEE0; /* Medium Blue (for highlights) */
+    --text-color-dark: #395886; /* Dark Blue for text on light backgrounds */
+    --text-color-light: #F0F3FA; /* Very Light Blue for text on dark backgrounds */
+    --bg-light: #F0F3FA; /* Very Light Blue for main content background */
+    --bg-dark: #395886; /* Dark Blue for sidebar background */
+    --border-color: rgba(57, 88, 134, 0.2); /* Semi-transparent primary color */
+}
+
+/* General Styles (FINAL MODIFICATION - Dot Grid Texture) */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    
+    /* --- MODIFIKASI: Abstract Dot Grid Texture --- */
+    background-color: #E6EBF5; /* Base warna yang sedikit berbeda */
+    background-image: 
+        /* Dot Grid Pattern menggunakan repeating-radial-gradient */
+        repeating-radial-gradient(
+            circle at center, 
+            rgba(57, 88, 134, 0.1), /* Titik dari Primary Color, opasitas rendah */
+            rgba(57, 88, 134, 0.1) 2px, /* Ukuran titik 2px */
+            transparent 2px, 
+            transparent 30px /* Jarak antar titik 30px */
+        );
+            
+    background-size: 30px 30px; /* Ukuran pola yang diulang */
+        
+    color: var(--text-color-dark);
+    display: flex;
+    overflow-x: hidden; /* Prevent horizontal scroll when sidebar is open */
+}
+/* ----------------------------------------------------------------- */
+
+/* Sidebar */
+#sidebar {
+    width: 250px;
+    background-color: var(--bg-dark);
+    color: var(--text-color-light);
+    height: 100vh;
+    position: fixed;
+    left: -250px; /* Hidden by default */
+    top: 0;
+    transition: all 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.3); /* Shadow ditingkatkan */
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    z-index: 1000;
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.sidebar-header .close-btn {
+    background: none;
+    border: none;
+    color: var(--text-color-light);
+    font-size: 1.8em;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: var(--accent-color); /* Logo accent */
+    padding: 5px;
+}
+
+.logo h2 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--accent-color); /* Logo text accent */
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1;
+}
+
+.sidebar-menu li {
+    margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.sidebar-menu a i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active-link { /* Added active-link style */
+    background-color: var(--secondary-color); /* Hover background */
+    color: var(--text-color-light); /* Hover text color */
+    font-weight: 600; /* Make active link bolder */
+}
+
+/* Dropdown Menu */
+.sidebar-menu .dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-menu .dropdown-icon {
+    transition: transform 0.3s ease;
+}
+
+.sidebar-menu li.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    background-color: #4A6E9B; /* Slightly lighter shade for sub-menu */
+    border-radius: 5px;
+    overflow: hidden; /* Hide overflow when not active */
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+}
+
+.sidebar-menu li.active .dropdown-menu {
+    max-height: 200px; /* Adjust as needed */
+}
+
+.dropdown-menu li a {
+    padding: 10px 20px 10px 45px; /* Indent sub-items */
+    font-size: 1em;
+    color: var(--text-color-light);
+}
+
+.dropdown-menu li a:hover {
+    background-color: var(--secondary-color); /* Sub-menu hover */
+}
+
+/* Social Links */
+.social-links {
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+}
+
+.social-links a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 1.1em;
+    display: inline-flex;
+    align-items: center;
+    margin-top: 15px;
+    padding: 8px 15px;
+    border: 1px solid var(--accent-color);
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.social-links a i {
+    margin-right: 8px;
+    font-size: 1.3em;
+}
+
+.social-links a:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-dark); /* Text on accent hover */
+}
+
+/* Main Content */
+#main-content {
+    flex-grow: 1;
+    margin-left: 0; /* No margin initially */
+    padding: 20px;
+    transition: transform 0.3s ease; /* Changed to transform for smoother animation */
+    position: relative;
+    width: 100%; /* Ensure it takes full width initially */
+}
+
+#main-content.shifted {
+    transform: translateX(250px); /* Shift content when sidebar is open using transform */
+}
+
+.open-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 5px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+}
+
+.open-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Content Sections */
+.content-section {
+    display: none; /* Hidden by default */
+    padding: 40px;
+    background-color: var(--bg-light); /* Use bg-light for content background */
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
+    margin-top: 70px; /* Space for open button */
+    min-height: calc(100vh - 90px);
+}
+
+.content-section.active {
+    display: block; /* Show active section */
+}
+
+.content-section h2 {
+    color: var(--primary-color);
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+}
+
+.content-section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-color); /* Accent under heading */
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.hero-section {
+    text-align: center;
+    padding: 80px 40px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-color-light);
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    margin-bottom: 30px; /* Added space below hero section */
+}
+
+.hero-section h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-section p {
+    font-size: 1.3em;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+/* New: Important Note Section */
+.important-note-section {
+    background-color: #FFFFFF; /* Ganti ke putih murni agar lebih menonjol */
+    border: 2px solid var(--accent-color); /* Accent border for emphasis */
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 40px; /* Space below the note */
+}
+
+.important-note-section h2 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.important-note-section h2::after {
+    content: '';
+    display: block;
+    width: 50px; /* Slightly smaller underline */
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.important-note-section p {
+    font-size: 1.1em;
+    color: var(--text-color-dark);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 600; /* Make text a bit bolder for emphasis */
+}
+
+/* Project List */
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-item {
+    background-color: #FFFFFF; /* Ganti ke putih murni */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-top: 5px solid var(--accent-color); /* Accent on project item */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; /* Make project item a flex container */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Push download button to bottom */
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Shadow lebih kuat saat hover */
+}
+
+.project-item h3 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.project-item p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    margin-bottom: 20px;
+    flex-grow: 1; /* Allow paragraph to take up available space */
+}
+
+/* Audio Preview Player Styles */
+.audio-preview {
+    width: 100%; /* Full width within its container */
+    margin-bottom: 20px; /* Space above download button */
+    border-radius: 5px;
+    outline: none; /* Remove default blue outline on focus */
+}
+
+/* Styling native audio player controls (limited customization) */
+.audio-preview::-webkit-media-controls-panel {
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+}
+
+.audio-preview::-webkit-media-controls-play-button,
+.audio-preview::-webkit-media-controls-current-time-display,
+.audio-preview::-webkit-media-controls-time-remaining-display,
+.audio-preview::-webkit-media-controls-timeline,
+.audio-preview::-webkit-media-controls-volume-slider {
+    color: var(--text-color-light); /* Affects some icons/text */
+}
+
+.audio-preview::-webkit-media-controls-timeline {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: flex-start; /* Align button to start within flex column */
+}
+
+.download-btn i {
+    margin-right: 10px;
+}
+
+.download-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #sidebar {
+        left: -250px; /* Always hidden on small screens initially */
+        width: 200px;
+        padding-top: 10px;
+    }
+
+    #sidebar.active {
+        left: 0;
+    }
+
+    #main-content {
+        /* Removed margin-left manipulation for small screens,
+           as sidebar now overlays */
+        transform: translateX(0); /* Ensure no initial shift on small screens */
+        padding: 15px;
+    }
+
+    #main-content.shifted {
+        /* No shift on small screens as sidebar overlays */
+        transform: translateX(0);
+    }
+
+    .open-btn {
+        top: 15px;
+        left: 15px;
+    }
+
+    .content-section {
+        padding: 20px;
+        margin-top: 60px;
+    }
+
+    .hero-section {
+        padding: 60px 20px;
+        margin-bottom: 25px; /* Adjust spacing for smaller screens */
+    }
+
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-section p {
+        font-size: 1.1em;
+    }
+
+    .important-note-section {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .important-note-section h2 {
+        font-size: 1.8em;
+    }
+
+    .important-note-section p {
+        font-size: 1em;
+    }
+
+    .sidebar-header .close-btn {
+        position: static; /* Adjust position */
+        align-self: flex-start;
+        margin-left: auto;
+    }
+
+    .logo {
+        flex-direction: column;
+        text-align: center;
+        margin-right: 10px; /* Space from close button */
+    }
+
+    .logo img {
+        margin-bottom: 5px;
+        margin-right: 0;
+    }
+
+    .logo h2 {
+        font-size: 1.2em;
+    }
+
+    .audio-preview {
+        margin-bottom: 15px; /* Adjust spacing for smaller screens */
+    }
+
+    /* Adjust dropdown menu behavior on small screens */
+    .sidebar-menu li.active .dropdown-menu {
+        max-height: fit-content; /* Allow content to dictate height */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 2em;
+    }
+
+    .hero-section p {
+        font-size: 1em;
+    }
+
+    .project-item {
+        padding: 20px;
+    }
+
+    .project-item h3 {
+        font-size: 1.5em;
+    }
+
+    .download-btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .important-note-section h2 {
+        font-size: 1.5em;
+    }
+
+    .important-note-section p {
+        font-size: 0.9em;
+    }
+}
