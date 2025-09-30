@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Project - Bagikan Proyek Kreatifmu! 🎨</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Gaya dasar untuk kotak pencarian */
+        .search-container {
+            margin-bottom: 20px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 5px 10px;
+            background-color: #f9f9f9;
+        }
+
+        .search-container input[type="text"] {
+            border: none;
+            outline: none;
+            padding: 8px;
+            flex-grow: 1;
+            font-size: 16px;
+            background-color: transparent;
+        }
+
+        .search-container .fas {
+            color: #555;
+            margin-right: 10px;
+        }
+
+        /* Menambahkan sedikit margin-top pada judul jika kotak cari ada di atasnya */
+        .content-section h2 {
+            margin-top: 15px;
+        }
+        
+        /* --- CSS BARU UNTUK MODAL (POP-UP) --- */
+        .modal {
+            position: fixed;
+            /* PENTING: Z-index sangat tinggi agar modal di atas sidebar */
+            z-index: 9999; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+        }
+
+        /* Animasi untuk modal */
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0} 
+            to {top: 0; opacity: 1}
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            display: none;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .modal-content h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 24px;
+        }
+        
+        .modal-content p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* Gaya tambahan untuk link aktif */
+        .sidebar-menu a.active-link {
+            background-color: #3f51b5;
+            color: white !important;
+            border-radius: 5px;
+        }
+        
+        /* Pastikan sidebar memiliki z-index yang lebih rendah dari modal jika terbuka */
+        #sidebar.active {
+            z-index: 100; /* Sidebar harus lebih rendah dari modal (9999) */
+        }
+        /* Tambahan: pastikan ikon WhatsApp di sidebar menggunakan ukuran standar */
+        .social-links .fab {
+            font-size: 1em; /* Menggunakan ukuran font standar */
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="infoModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <h3 id="modalTitle">Pemberitahuan 📢</h3>
+        <p id="modalMessage">Ini adalah pesan default.</p>
+        <button class="download-btn" onclick="closeModal()">Oke, Mengerti 👍</button>
+      </div>
+    </div>
+    
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" onclick="toggleSidebar()"><i class="fas fa-times"></i></button>
+            <div class="logo">
+                <img src="logo1.jpg" alt="Free Project Logo">
+                <h2>Elonx 🚀</h2>
+            </div>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" onclick="showSection('home')"><i class="fas fa-home"></i> Beranda 🏠</a></li>
+            <li><a href="#" onclick="showInfoModal('Segera Hadir! 🎧', 'Proyek **Acapella** sedang dalam proses penyiapan. Nantikan koleksi Acapella gratis yang keren segera! ✨', false)"><i class="fas fa-microphone"></i> Acapella</a></li>
+            <li><a href="#" onclick="showSection('film-project')"><i class="fas fa-music"></i> Project Flm Gratis! </a></li>
+            <li>
+                <a href="#" class="dropdown-toggle" onclick="handleProjectForSaleClick(event)"><i class="fas fa-shopping-cart"></i> Project For Sale <i class="fas fa-caret-down dropdown-icon"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" onclick="showSection('style-enaf')">Enaff</a></li>
+                    <li><a href="#" onclick="showSection('style-lambada')">Lambada</a></li>
+                    <li><a href="#" onclick="showSection('style-vinky-yete')">SlowBeat1</a></li>
+                    <li><a href="#" onclick="showSection('style-maman-fvndy')">SlowBeat2</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="social-links">
+            <a href="https://wa.me/6283129555763" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp 💬</a>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <button class="open-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+
+        <section id="home" class="content-section active">
+            <div class="hero-section">
+                <h1>Project Flm Untukmu, Gratis!</h1>
+                <p>Selamat datang di Free Project, tempat di mana ide-ide kreatif bertemu dan proyek-proyek dibagikan secara cuma-cuma. Temukan inspirasi, unduh aset gratis, apalah.</p>
+                <p>Jelajahi berbagai kategori proyek melalui navigasi di samping kiri. Mari berkarya bersama! 🎶</p>
+            </div>
+            <div class="important-note-section">
+                <h2>Perlu Diperhatikan ⚠️</h2>
+                <p>Tolong gunakan Projects atau acapella Ini sebagai bahan pembelajaran, tidak untuk dilisensi ataupun di per jual belikan, terimakasih! 🙏</p>
+            </div>
+        </section>
+
+        <section id="acapella" class="content-section">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="acapella-search" onkeyup="filterProjects('acapella', 'acapella-search')" placeholder="Cari Acapella Gratis... 🔍">
+            </div>
+            <h2>Kumpulan Acapella Gratis 🎤</h2>
+            <p>Di sini Anda dapat menemukan berbagai acapella berkualitas untuk kebutuhan musik Anda.</p>
+            
+            <div class="project-list" id="acapella-list">
+                <div class="project-item">
+                    <h3>Acapella Mashup Wenak</h3>
+                    <p>Acapella vokal dengan sentuhan melodi modern, cocok untuk remix atau lagu baru.</p>
+                    <audio controls class="audio-preview">
+                        <source src="previews/acapella-vokal-keren-preview.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="files/acapella-vokal-keren.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Acapella ⬇️</a>
+                </div>
+                <div class="project-item">
+                    <h3>Acapella Mashup India</h3>
+                    <p>Vokal energik yang cocok untuk musik EDM dan house.</p>
+                    <audio controls class="audio-preview">
+                        <source src="previews/acapella-edm-beat-preview.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="files/acapella-edm-beat.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh Acapella ⬇️</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="film-project" class="content-section">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="film-search" onkeyup="filterProjects('film-project', 'film-search')" placeholder="Cari Project Film/Sample Gratis... 🔎">
+            </div>
+            <h2>Project Flm & Sample Gratis</h2>
+            <p>Kesempatan untuk eksplorasi dan Belajar, Kami menyediakan Project Fl Studio Mobile untukmu, Gratis! 🤩</p>
+            
+            <div class="project-list" id="film-project-list">
+                <div class="project-item">
+                    <h3>Style Slow Beat - Stereo Love</h3>
+                    <p>Project Flm Disertai Sample!</p>
+                    <audio controls class="audio-preview">
+                        <source src="audio/slowkeun.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="ProjectFree/StereoLove.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh </a>
+                </div>
+                
+                <div class="project-item">
+                    <h3>Style Sopan - Merryou</h3>
+                    <p>Project Flm Disertai Sample!</p>
+                    <audio controls class="audio-preview">
+                        <source src="audio/sopan.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="ProjectFree/sopanstyle1.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh </a>
+                </div>
+                
+                <div class="project-item">
+                    <h3>Gatau Style Apa - Terimuskura</h3>
+                    <p>Project Flm Disertai Sample!</p>
+                    <audio controls class="audio-preview">
+                        <source src="audio/terimuskura.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="ProjectFree/TERIMUSKURA.zip" download class="download-btn"><i class="fas fa-download"></i> Unduh </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="style-enaf" class="content-section">
+            <h2>Project Style Enaf 💸</h2>
+            <p></p>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Dj Abg Tua
+                    <span class="price">Rp 20.000</span></h3>
+                    <p>Project Flm Disertai Sample!</p>
+                    <audio controls class="audio-preview">
+                        <source src="previews/drum-kit-enaf-vol1-preview.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="https://wa.me/6283129555763?text=Halo%2C%20saya%20tertarik%20dengan%20Drum%20Kit%20Enaf%20Vol.%201%20seharga%20Rp%2020.000." target="_blank" class="purchase-btn"><i class="fab fa-whatsapp"></i> Beli via WhatsApp 🛒</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="style-lambada" class="content-section">
+            <h2>Style Lambada</h2>
+            <p></p>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Dj This Is What You Came For          
+                    <span class="price">Rp 20.000</span></h3>
+                    <p>Project Flm Disertai Sample</p>
+                    <audio controls class="audio-preview">
+                        <source src="audio/lambada.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="https://wa.me/6283129555763?text=Halo%2C%20saya%20tertarik%20dengan%20Style%20Lambada%20seharga%20Rp%2020.000." target="_blank" class="purchase-btn"><i class="fab fa-whatsapp"></i> Beli via WhatsApp 🛒</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="style-vinky-yete" class="content-section">
+            <h2>SlowBeat</h2>
+            <p></p>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Dj Take Away <span class="price">Rp 15.000</span></h3>
+                    <p>Project Flm Disertai Samlple</p>
+                    <audio controls class="audio-preview">
+                        <source src="audio/take.mp3" type="audio/mpeg">
+                        Your browser does support the audio element.
+                    </audio>
+                    <a href="https://wa.me/6283129555763?text=Halo%2C%20saya%20tertarik%20dengan%20SlowBeat1%20seharga%20Rp%2015.000." target="_blank" class="purchase-btn"><i class="fab fa-whatsapp"></i> Beli via WhatsApp 🛒</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="style-maman-fvndy" class="content-section">
+            <h2>SlowBeatV2</h2>
+            <p></p>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Dj Kasih Aba Aba <span class="price">Rp 15.000</span></h3>
+                    <p>Project Flm Disertai Sample.</p>
+                    <audio controls class="audio-preview">
+                        <source src="audio/slow2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="https://wa.me/6283129555763?text=Halo%2C%20saya%20tertarik%20dengan%20SlowBeatV2%20seharga%20Rp%2015.000." target="_blank" class="purchase-btn"><i class="fab fa-whatsapp"></i> Beli via WhatsApp 🛒</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        
+        // Variable untuk menyimpan status apakah modal yang ditampilkan adalah notifikasi sale
+        let isProjectSaleNotif = false;
+        // PENTING: Flag baru untuk melacak apakah notifikasi sudah pernah ditampilkan
+        let hasShownSaleNotif = false; 
+        
+        // --- FUNGSI BARU UNTUK MENGELOLA AUDIO PLAYER (HANYA SATU YANG BISA PLAY) ---
+        function setupSingleAudioPlay() {
+            // 1. Dapatkan semua elemen audio di seluruh halaman
+            const allAudios = document.querySelectorAll('audio');
+
+            // 2. Tambahkan event listener 'play' ke setiap audio
+            allAudios.forEach(audio => {
+                audio.addEventListener('play', function() {
+                    // Ketika audio ini mulai diputar, hentikan semua audio lainnya
+                    allAudios.forEach(otherAudio => {
+                        // Pastikan yang dihentikan adalah audio lain, bukan yang sedang diputar
+                        if (otherAudio !== this) {
+                            otherAudio.pause();
+                            otherAudio.currentTime = 0; // Opsional: kembalikan ke awal
+                        }
+                    });
+                });
+            });
+        }
+        // --- AKHIR FUNGSI AUDIO PLAYER ---
+        
+        // FUNGSI UTAMA UNTUK MENGHANDLE KLIK 'PROJECT FOR SALE'
+        function handleProjectForSaleClick(event) {
+            event.preventDefault(); // Mencegah aksi default (toggleDropdown)
+
+            const parentLi = event.target.closest('li');
+            // const isCurrentlyActive = parentLi.classList.contains('active'); // Tidak digunakan
+
+            if (!hasShownSaleNotif) {
+                // KLIK PERTAMA: Tampilkan pop-up dan paksa buka dropdown
+                showInfoModal(
+                    'Baca Mek 🧐', // Menambahkan emoji
+                    'Semua Project Di Sini Tidak Full, Alias Cuma Separo, Jadi Saya Hanya Menjual Bagan Nya Saja, Makanya Saya Jual Murah Jirlah🗿. Intinya Kalo Tertarik Silahkan, Kalo Engga Ya Gausah Cukimayy😂', // Menambahkan emoji
+                    true // isSale
+                );
+                parentLi.classList.add('active'); // Paksa buka dropdown
+                hasShownSaleNotif = true; // Set flag agar tidak muncul lagi
+            } else {
+                // KLIK KEDUA DAN SETERUSNYA: Lakukan toggle biasa (buka/tutup dropdown)
+                toggleDropdown(event); 
+            }
+        }
+        
+        // FUNGSI UMUM UNTUK MENAMPILKAN MODAL INFO
+        function showInfoModal(title, message, isSale = false) {
+            isProjectSaleNotif = isSale;
+            
+            // Hentikan semua audio saat modal muncul
+            const allAudios = document.querySelectorAll('audio');
+            allAudios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+            
+            // Set judul dan pesan
+            document.getElementById('modalTitle').innerHTML = title; 
+            document.getElementById('modalMessage').innerHTML = message;
+            
+            // Tampilkan modal
+            document.getElementById('infoModal').style.display = 'flex';
+            
+            // Mengelola kelas aktif di sidebar
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active-link');
+            });
+            
+            // Logika Link Aktif (Acapella/Sale)
+            if (isSale) {
+                const saleToggle = document.querySelector('.dropdown-toggle');
+                if (saleToggle) {
+                    saleToggle.classList.add('active-link');
+                }
+            } else {
+                 // Cari link berdasarkan substring title di atribut onclick
+                 const link = document.querySelector(`.sidebar-menu a[onclick*="${title.replace('🎧', '').trim()}"]`);
+                 if (link) {
+                     link.classList.add('active-link');
+                 }
+                 // Untuk Acapella, kembalikan ke Home
+                 const sections = document.querySelectorAll('.content-section');
+                 sections.forEach(section => {
+                     section.classList.remove('active');
+                 });
+                 document.getElementById('home').classList.add('active');
+                 document.querySelector('.sidebar-menu li:first-child a').classList.add('active-link');
+            }
+        }
+        
+        // FUNGSI MODIFIKASI: UNTUK MENUTUP MODAL
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+
+            // Jika modal yang ditutup adalah notifikasi sale, pastikan dropdownnya tetap terbuka
+            if (isProjectSaleNotif) {
+                const saleToggle = document.querySelector('.dropdown-toggle');
+                if (saleToggle) {
+                    // Paksa li induk tetap active (terbuka)
+                    saleToggle.closest('li').classList.add('active'); 
+                }
+                isProjectSaleNotif = false; // Reset status
+            }
+        }
+        
+        // ------------------------------------------
+        
+        // Fungsi ini hanya untuk tombol hamburger/close sidebar
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
+            document.getElementById("main-content").classList.toggle("shifted");
+        }
+
+        function toggleDropdown(event) {
+             // Fungsi ini dipanggil untuk KLIK KEDUA dan seterusnya pada "Project For Sale"
+            if (event) {
+                event.preventDefault();
+            }
+            const parent = event.target.closest('li');
+            parent.classList.toggle('active');
+        }
+
+        function showSection(sectionId) {
+            // Sembunyikan semua section
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            // Tampilkan section yang diinginkan
+            document.getElementById(sectionId).classList.add('active');
+
+            // Hapus kelas active-link dari semua item menu
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active-link');
+            });
+
+            // Tambahkan kelas active-link ke item yang diklik
+            let clickedLink = event.target.closest('a');
+            if (clickedLink) {
+                if (!clickedLink.classList.contains('dropdown-toggle')) {
+                    clickedLink.classList.add('active-link');
+                    
+                    // Pastikan link dropdown toggle-nya juga aktif jika ini adalah sub-menu
+                    const dropdownToggle = clickedLink.closest('.dropdown-menu') ? clickedLink.closest('.dropdown-menu').previousElementSibling : null;
+                    if (dropdownToggle && dropdownToggle.classList.contains('dropdown-toggle')) {
+                         dropdownToggle.classList.add('active-link');
+                         dropdownToggle.closest('li').classList.add('active');
+                    }
+                } else {
+                    clickedLink.classList.add('active-link');
+                }
+            } else if (sectionId === 'home') {
+                 document.querySelector('.sidebar-menu li:first-child a').classList.add('active-link');
+            }
+            
+            // Optional: Tutup sidebar setelah mengklik sub-menu HANYA PADA LAYAR MOBILE
+            if (window.innerWidth <= 768) { 
+                toggleSidebar();
+            }
+            
+            // Hentikan semua audio saat berpindah seksi (praktik yang baik)
+            const allAudios = document.querySelectorAll('audio');
+            allAudios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0; 
+            });
+        }
+        
+        // Fungsi filterProjects (dikosongkan karena tidak ada implementasi)
+        function filterProjects(sectionId, inputId) {
+            // Ambil input value dan ubah ke huruf kecil
+            const filter = document.getElementById(inputId).value.toUpperCase();
+            // Dapatkan list container untuk section yang relevan
+            const list = document.getElementById(sectionId + '-list');
+            // Dapatkan semua item project
+            const items = list.getElementsByClassName('project-item');
+
+            // Iterasi melalui semua item project
+            for (let i = 0; i < items.length; i++) {
+                // Ambil teks dari judul (h3) dan deskripsi (p)
+                const h3 = items[i].getElementsByTagName('h3')[0];
+                const p = items[i].getElementsByTagName('p')[0];
+                
+                if (h3 || p) {
+                    const textValue = (h3 ? h3.textContent : '') + ' ' + (p ? p.textContent : '');
+                    if (textValue.toUpperCase().indexOf(filter) > -1) {
+                        items[i].style.display = ""; // Tampilkan
+                    } else {
+                        items[i].style.display = "none"; // Sembunyikan
+                    }
+                }       
+            }
+        }
+        
+        // Panggil fungsi untuk mengaktifkan fitur 1-audio-at-a-time saat halaman dimuat
+        setupSingleAudioPlay();
+    </script>
+</body>
+</html>
